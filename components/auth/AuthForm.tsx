@@ -78,7 +78,8 @@ export function AuthForm({ mode = "login", onToggleMode, onSuccess }: AuthFormPr
           />
         </label>
         <div className="sm:col-span-2 flex items-center justify-between">
-          <p className="text-xs text-zinc-500">Email/password uses Firebase Authentication.</p>
+          <div></div>
+          {/* <p className="text-xs text-zinc-500">Email/password uses Firebase Authentication.</p> */}
           <Button type="submit" disabled={busy} variant="secondary">
             {busy ? "Working..." : mode === "login" ? "Log in" : "Sign up"}
           </Button>
