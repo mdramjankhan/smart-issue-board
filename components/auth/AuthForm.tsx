@@ -65,7 +65,7 @@ export function AuthForm({ mode = "login", onToggleMode, onSuccess }: AuthFormPr
             type="email"
             value={form.email}
             onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value }))}
-            placeholder="you@work.com"
+            placeholder="Your email address"
           />
         </label>
         <label className="flex flex-col gap-2 text-sm text-zinc-700">
