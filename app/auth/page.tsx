@@ -28,8 +28,8 @@ function AuthPageInner() {
   }, [initializing, router, user]);
 
   return (
-    <div className="min-h-screen bg-transparent py-10 px-4 sm:px-6 lg:px-10">
-      <div className="mx-auto flex max-w-4xl flex-col gap-6">
+    <div className="min-h-screen  py-10 px-4 sm:px-6 lg:px-10">
+      <div className=" mx-auto flex max-w-5xl flex-col gap-6">
         <Header />
         <AuthForm mode={mode} onToggleMode={setMode} onSuccess={() => router.replace("/")} />
       </div>
