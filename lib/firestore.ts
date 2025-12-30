@@ -12,6 +12,7 @@ import {
     where,
     type DocumentData,
     type DocumentSnapshot,
+    type QueryConstraint,
 } from "firebase/firestore";
 import { db } from "./firebase";
 import {
@@ -55,7 +56,7 @@ export async function listIssues(
         limitTo?: number;
     } = {}
 ): Promise<IssueRecord[]> {
-    const constraints = [orderBy("createdAt", "desc")];
+    const constraints: QueryConstraint[] = [orderBy("createdAt", "desc")];
 
     if (options.status) constraints.push(where("status", "==", options.status));
     if (options.priority)
@@ -102,7 +103,7 @@ export async function updateIssueStatus(
 
 export interface SimilarIssue {
     issue: IssueRecord;
-    score: number; // 0 to 1; higher means more overlap in meaningful words
+    score: number; 
 }
 
 const tokenize = (text: string) =>
@@ -120,7 +121,6 @@ const jaccard = (a: string[], b: string[]) => {
     return intersection / union;
 };
 
-// Lightweight similarity check: compare overlapping keywords on title+description.
 export async function findSimilarIssues(candidate: {
     title: string;
     description: string;

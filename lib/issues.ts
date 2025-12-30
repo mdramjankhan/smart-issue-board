@@ -11,6 +11,7 @@ import {
     updateDoc,
     type DocumentData,
     type DocumentSnapshot,
+    type QueryConstraint,
 } from "firebase/firestore";
 import { db } from "./firebase";
 import { IssueInput, IssuePriority, IssueRecord, IssueStatus } from "@/types/issue";
@@ -46,8 +47,7 @@ export async function listIssues(options: {
     priority?: IssuePriority;
     limitTo?: number;
 } = {}): Promise<IssueRecord[]> {
-    // Avoid Firestore composite index requirements by fetching ordered data then filtering client-side.
-    const constraints = [orderBy("createdAt", "desc")];
+    const constraints: QueryConstraint[] = [orderBy("createdAt", "desc")];
     if (options.limitTo) constraints.push(fsLimit(options.limitTo));
 
     const snap = await getDocs(query(issuesCollection, ...constraints));
@@ -92,7 +92,7 @@ export async function updateIssueStatus(issueId: string, nextStatus: IssueStatus
 
 export interface SimilarIssue {
     issue: IssueRecord;
-    score: number; // 0 to 1; higher means more overlap in meaningful words
+    score: number; 
 }
 
 export async function findSimilarIssues(candidate: { title: string; description: string }): Promise<SimilarIssue[]> {

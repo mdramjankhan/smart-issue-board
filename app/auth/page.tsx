@@ -1,12 +1,20 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AuthForm } from "@/components/auth/AuthForm";
 import { Header } from "@/components/Header";
 import { useAuth } from "@/context/AuthContext";
 
 export default function AuthPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-transparent py-10 px-4 sm:px-6 lg:px-10 text-sm text-zinc-600">Loading auth...</div>}>
+      <AuthPageInner />
+    </Suspense>
+  );
+}
+
+function AuthPageInner() {
   const { user, initializing } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
