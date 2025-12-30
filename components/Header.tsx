@@ -8,23 +8,25 @@ export function Header() {
     const { user, signOut } = useAuth();
 
     return (
-        <header className="flex flex-wrap items-center justify-between gap-4 rounded-3xl bg-white/80 p-6 shadow-sm ring-1 ring-black/5 backdrop-blur">
-            <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-500">Smart Issue Board</p>
-                <h1 className="text-3xl font-semibold text-zinc-900">Report issues, avoid duplicates, and track progress.</h1>
+        <header className="flex flex-col gap-4 rounded-3xl bg-white/80 p-5 sm:p-6 shadow-sm ring-1 ring-black/5 backdrop-blur sm:flex-row sm:items-center sm:justify-between">
+            <div className="space-y-1 text-center sm:text-left">
+                <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-zinc-500">Smart Issue Board</p>
+                <h1 className="text-2xl sm:text-3xl font-semibold text-zinc-900">Report issues, avoid duplicates, and track progress.</h1>
                 <p className="text-sm text-zinc-600">Auth with Email/Password, Firestore Database</p>
             </div>
-            <div className="flex items-center gap-3 rounded-full bg-zinc-100 px-4 py-2 text-sm text-zinc-700">
+            <div className="flex w-full min-w-0 flex-col items-center gap-2 rounded-2xl bg-zinc-100/90 px-4 py-3 text-sm text-zinc-700 shadow-inner sm:w-auto sm:flex-row sm:items-center sm:rounded-full sm:gap-3 sm:px-5">
                 {user ? (
                     <>
-                        <span className="rounded-full bg-emerald-100 px-2 py-1 text-xs font-medium text-emerald-700">Signed in</span>
-                        <span className="font-medium">{user.email}</span>
-                        <Button variant="secondary" className="px-3" onClick={signOut}>
+                        <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700 whitespace-nowrap">Signed in</span>
+                        <span className="min-w-0 font-medium text-center sm:text-left sm:max-w-[260px] truncate">
+                            {user.email}
+                        </span>
+                        <Button variant="secondary" className="w-full whitespace-nowrap px-4 py-2 sm:w-auto sm:min-w-[112px] sm:px-5 shadow-sm ring-1 ring-black/5" onClick={signOut}>
                             Log out
                         </Button>
                     </>
                 ) : (
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-col items-center gap-2 sm:flex-row">
                         <span className="text-zinc-600">Not signed in</span>
                         <Link href="/auth" className="text-indigo-600 underline">
                             Log in / Sign up

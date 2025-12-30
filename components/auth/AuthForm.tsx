@@ -49,12 +49,15 @@ export function AuthForm({ mode = "login", onToggleMode, onSuccess }: AuthFormPr
   };
 
   return (
-    <div className="rounded-3xl bg-white/90 p-6 shadow-sm ring-1 ring-black/5 backdrop-blur">
-      <div className="mb-4 flex items-center justify-between">
+    <div className="rounded-3xl bg-white/90 p-5 sm:p-6 shadow-sm ring-1 ring-black/5 backdrop-blur">
+      <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <h2 className="text-xl font-semibold text-zinc-900">
           {mode === "login" ? "Log in to manage issues" : "Create an account"}
         </h2>
-        <button className="text-sm font-medium text-indigo-600 underline" onClick={toggle}>
+        <button
+          className="text-sm font-medium text-indigo-600 underline self-start sm:self-auto"
+          onClick={toggle}
+        >
           {mode === "login" ? "Need an account?" : "Have an account?"}
         </button>
       </div>
@@ -77,10 +80,9 @@ export function AuthForm({ mode = "login", onToggleMode, onSuccess }: AuthFormPr
             placeholder="At least 6 characters"
           />
         </label>
-        <div className="sm:col-span-2 flex items-center justify-between">
-          <div></div>
-          {/* <p className="text-xs text-zinc-500">Email/password uses Firebase Authentication.</p> */}
-          <Button type="submit" disabled={busy} variant="secondary">
+        <div className="sm:col-span-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-zinc-500">Email/password uses Firebase Authentication.</p>
+          <Button type="submit" disabled={busy} variant="secondary" className="w-full sm:w-auto">
             {busy ? "Working..." : mode === "login" ? "Log in" : "Sign up"}
           </Button>
         </div>
