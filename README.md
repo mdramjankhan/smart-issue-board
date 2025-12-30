@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+📘 Smart Issue Board
+📝 Project Description
 
-## Getting Started
+Smart Issue Board is a simple issue-tracking web application that allows authenticated users to create, view, and manage issues in a structured way.
 
-First, run the development server:
+The goal of this project is to demonstrate practical problem-solving, basic workflow rules, and Firestore data modeling, rather than building a complex system.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Users can report issues with a title, description, priority, and assignee.
+The app also includes lightweight safeguards such as duplicate issue detection and controlled status transitions.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🚀 What This App Does
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Users can sign up and log in using email and password
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Logged-in users can create issues
 
-## Learn More
+Each issue includes:
 
-To learn more about Next.js, take a look at the following resources:
+Title
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Description
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Priority (Low / Medium / High)
 
-## Deploy on Vercel
+Status (Open / In Progress / Done)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Assigned To
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Created By and Created Time
+
+The app checks for similar issues before saving a new one to reduce duplicates
+
+Issues can be filtered by status and priority
+
+Issues follow a real-world workflow rule:
+
+An issue cannot move directly from Open → Done
+
+All data is stored securely in Firebase Firestore
+
+The app is deployed and usable in production
+
+🛠️ Tech Stack
+
+Frontend: Next.js (React)
+
+Styling: Tailwind CSS
+
+Authentication: Firebase Authentication (Email/Password)
+
+Database: Firebase Firestore
+
+Hosting: Vercel
+
+Code Hosting: Public GitHub Repository
+
+📊 Firestore Data Structure
+
+Issues are stored in a single issues collection with fields such as:
+
+title
+
+description
+
+priority
+
+status
+
+assignedTo
+
+createdBy
+
+createdAt
+
+This structure keeps the data model simple and easy to query.
+
+🧠 Similar Issue Handling
+
+Before creating a new issue, the app checks existing issues for similar titles or descriptions.
+If a similar issue is found, the user is warned before proceeding.
+This helps avoid duplicate issues while still allowing flexibility.
+
+⚠️ Status Rules
+
+To reflect real development workflows:
+
+Issues must move from Open → In Progress → Done
+
+Direct transitions from Open → Done are not allowed
+
+A friendly message is shown if an invalid transition is attempted
+
+🔍 Challenges & Learnings
+
+Designing a simple but practical Firestore schema
+
+Handling ambiguous requirements for “similar issues”
+
+Enforcing business rules without over-engineering
+
+🔮 Future Improvements
+
+Better similarity detection using NLP
+
+Role-based access (admin / user)
+
+Comments on issues
+
+Pagination for large issue lists
